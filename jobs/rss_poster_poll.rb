@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'simple-rss'
+require 'rss'
 require 'htmlentities'
 
 module Jobs
@@ -22,7 +22,7 @@ module Jobs
         regexp_title = Regexp.new(feed.regexp_title_pattern.to_s, feed.regexp_title_options.to_s)
         regexp_body = Regexp.new(feed.regexp_body_pattern.to_s, feed.regexp_body_options.to_s)
 
-        rss = SimpleRSS.parse open(feed.url, allow_redirections: :all)
+        rss = RSS.parse open(feed.url, allow_redirections: :all)
 
         rss.items.each do |item|
           begin
