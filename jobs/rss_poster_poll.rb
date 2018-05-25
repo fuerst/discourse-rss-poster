@@ -22,7 +22,7 @@ module Jobs
         regexp_title = Regexp.new(feed.regexp_title_pattern.to_s, feed.regexp_title_options.to_s)
         regexp_body = Regexp.new(feed.regexp_body_pattern.to_s, feed.regexp_body_options.to_s)
 
-        rss = RSS.parse open(feed.url, allow_redirections: :all)
+        rss = RSS::Parser.parse(feed.url, false)
 
         rss.items.each do |item|
           begin
